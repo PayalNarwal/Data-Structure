@@ -13,6 +13,9 @@ class Node{
         this -> data = data;
         this -> next = NULL;
     }
+    ~Node(){
+        cout << "Destructor called" << endl;
+    }
 };
 
 void printLL(Node* node){
@@ -22,6 +25,16 @@ void printLL(Node* node){
         temp = temp->next;
     }
     cout << endl;
+}
+
+int lengthLL(Node* node){
+    Node* temp = node;
+    int i = 1;
+    while(temp != NULL){
+        i++;
+        temp = temp->next;
+    }
+    return i;
 }
 
 void ins_at_beg(Node* &head, Node* &tail, int val){
@@ -122,25 +135,26 @@ void del_from_pos(Node* &head, Node* &tail, int position){
         cout << "Empty Linked List" << endl;
         return;
     }
+    int len = lengthLL(head);
     if(position == 1){
         del_from_beg(head,tail);
-        return;
     }
-    int i = 1;
-    Node* prev = head;
-    while(i<position-1){
-        prev = prev -> next;
-        i++;
-    }
-    Node* temp = prev->next;
-    if(temp == tail){
+    else if(position == len){
         del_from_end(head,tail);
-        return;
     }
-    prev -> next = temp->next;
-    temp -> next = NULL;
-    delete temp;
-
+    else{
+        int i = 1;
+        Node* prev = NULL;
+        Node* curr = head;
+        while(position != 1){
+            prev = curr;
+            curr = curr->next;
+            position--;
+        }        
+        prev -> next = curr->next;
+        curr -> next = NULL;
+        delete curr;
+    }  
 }
 
 void bubbleSortLL(Node* &head){
@@ -188,17 +202,17 @@ int main(){
     cout <<"head : "<< head->data << endl;
     cout <<"tail : "<< tail->data << endl;
 
-    del_from_beg(head,tail);
-    printLL(head);
-    cout << endl;
-    cout <<"head : "<< head->data << endl;
-    cout <<"tail : "<< tail->data << endl;
+    // del_from_beg(head,tail);
+    // printLL(head);
+    // cout << endl;
+    // cout <<"head : "<< head->data << endl;
+    // cout <<"tail : "<< tail->data << endl;
 
-    del_from_end(head,tail);
-    printLL(head);
-    cout << endl;
-    cout <<"head : "<< head->data << endl;
-    cout <<"tail : "<< tail->data << endl;
+    // del_from_end(head,tail);
+    // printLL(head);
+    // cout << endl;
+    // cout <<"head : "<< head->data << endl;
+    // cout <<"tail : "<< tail->data << endl;
 
     del_from_pos(head,tail,3);
     printLL(head);
@@ -206,7 +220,7 @@ int main(){
     cout <<"head : "<< head->data << endl;
     cout <<"tail : "<< tail->data << endl;
 
-    bubbleSortLL(head);
+    // bubbleSortLL(head);
 
     return 0; 
 }

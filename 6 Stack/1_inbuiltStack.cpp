@@ -8,7 +8,6 @@ void printStack(stack<int> s){
         s.pop();
     }
     cout << "----" << endl;
-
 }
 
 int main(){
@@ -32,9 +31,6 @@ int main(){
     cout << st.size() << endl;
 
     // cout << st.empty() << endl;
-
-
-
     
     return 0; 
 }

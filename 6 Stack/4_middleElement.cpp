@@ -25,7 +25,7 @@ int middleElement(stack<int> st){
         int size = st.size();
         int pos = -1;
         if(size % 2 == 0){
-            // even
+            // even -> first wale element ko middle mana h
             pos = size/2;
         }
         else{
@@ -35,7 +35,6 @@ int middleElement(stack<int> st){
         int mid = solve(st,pos);
         return mid;
     }
-
 }
 
 int main(){
@@ -50,6 +49,5 @@ int main(){
     
     int ans = middleElement(st);
     cout << ans << endl;
-
 
 }

@@ -52,6 +52,7 @@ Node* reverse(Node* &head){
 void addOne(Node* &head){
     head = reverse(head);
     int carry = 1;
+    // here carry is equal to the number you want to add
     Node* temp = head;
     Node* prev = NULL;
     while(temp != NULL){ 
@@ -80,6 +81,15 @@ int main(){
     printLL(head);
     addOne(head);
     printLL(head);
-    // printLL(reverse(head));
+
+    cout << endl;
+
+    head = NULL;
+    ins_at_beg(head,9);
+    ins_at_beg(head,3);
+    ins_at_beg(head,9);
+    printLL(head);
+    addOne(head);
+    printLL(head);
     return 0; 
 }
